@@ -48,3 +48,9 @@ Kutsekooliopilane kutsekooliopilane3 = new Kutsekooliopilane("Maksim", 1996, Isi
 kutsekooliopilane3.calculateAge();
 kutsekooliopilane3.calculateIncome(20,500);
 kutsekooliopilane3.printInfo();
+
+//4
+Kutsekooliopilane kutsekooliopilane4 = new Kutsekooliopilane("Vlad", 2000, Isik.Sugu.Mees, "Narva",Kutsekooliopilane.Oppeasutus.Tallinna_Ülikool, "Kokk", 2, 2023, 2021, 4);
+kutsekooliopilane4.calculateAge();
+kutsekooliopilane4.calculate_study_years(2021, 2023);
+kutsekooliopilane4.printInfo();

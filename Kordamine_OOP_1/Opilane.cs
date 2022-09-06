@@ -47,7 +47,7 @@ namespace Kordamine_OOP_1
         public override void printInfo()
         {
             Console.WriteLine("Opilane");
-            Console.WriteLine($"Nimi: {nimi} \nSugu: {sugu} \nSynniaasta: {synniAasta} \nVanus: {vanus} \nKoolinimi: {koolinimi} \nKlass: {klass} \nSpetsialiseerumine: {spetsialiseerumine} \nKoduloom: {koduloom_on} \nHuviringid: {huviringid} \n");
+            Console.WriteLine($"Nimi: {nimi} \nSugu: {sugu} \nSynniaasta: {synniAasta} \nVanus: {calculateAge()} \nKoolinimi: {koolinimi} \nKlass: {klass} \nSpetsialiseerumine: {spetsialiseerumine} \nKoduloom: {koduloom_on} \nHuviringid: {huviringid} \n");
         }
     }
 
