@@ -76,10 +76,15 @@ namespace Kordamine_OOP_1
             {
                 return ("Sõidutoetus ja põhitoetus");
             }
-            else
+            else if ((elukoht != "Tallinn" || elukoht != "Tartu") && kesk_hinne <= 3.5)
             {
-                return (" ");
+                return ("Sõidutoetus 30");
             }
+            else if (())
+            {
+                return ("Eritoetus 45");
+            }
+            else { return (" "); }
         }
         public override void printInfo()
         {

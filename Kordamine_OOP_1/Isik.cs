@@ -19,6 +19,8 @@ namespace Kordamine_OOP_1
         public double kaal;
         public string answer_avg;
         public string elukoht;
+        public enum Pere_suurus { Väike, Suur };
+        public Pere_suurus pere_suurus;
 
         public Isik(string nimi, int synniAasta, Sugu sugu)
         {
@@ -34,7 +36,7 @@ namespace Kordamine_OOP_1
             this.kasvu = kasvu;
             this.kaal = kaal;
         }
-        public Isik(string nimi, int synniAasta, Sugu sugu, string elukoht)
+        public Isik(string nimi, int synniAasta, Sugu sugu, string elukoht, Pere_suurus pere_suurus)
         {
             this.nimi = nimi;
             this.synniAasta = synniAasta;
