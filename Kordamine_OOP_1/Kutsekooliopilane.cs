@@ -47,7 +47,7 @@ namespace Kordamine_OOP_1
             this.lopp_kuupaev = lopp_kuupaev;
             this.sissepaas_kuupaev = sissepaas_kuupaev;
         }
-        public Kutsekooliopilane(string nimi, int synniAasta, Sugu sugu, string elukoht, Oppeasutus oppeasutus, string eriala, int kursus, int lopp_kuupaev, int sissepaas_kuupaev, double kesk_hinne) : base(nimi, synniAasta, sugu, elukoht)
+        public Kutsekooliopilane(string nimi, int synniAasta, Sugu sugu, string elukoht, Pere_suurus pere_suurus, Oppeasutus oppeasutus, string eriala, int kursus, int lopp_kuupaev, int sissepaas_kuupaev, double kesk_hinne) : base(nimi, synniAasta, sugu, elukoht, pere_suurus)
         {
             this.oppeasutus = oppeasutus;
             this.eriala = eriala;
@@ -80,10 +80,10 @@ namespace Kordamine_OOP_1
             {
                 return ("Sõidutoetus 30");
             }
-            else if (())
-            {
-                return ("Eritoetus 45");
-            }
+            //else if (())
+            //{
+            //    return ("Eritoetus 45");
+            //}
             else { return (" "); }
         }
         public override void printInfo()

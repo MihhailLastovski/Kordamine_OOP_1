@@ -1,0 +1,7 @@
+Marco,19,Mees;
+Dencik,22,Mees;
+Tatjana,12,Naine;
+Petr,23,Mees;
+Lera,22,Naine;
+Maksim,26,Mees;
+Vlad,22,Mees;
