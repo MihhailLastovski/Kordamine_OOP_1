@@ -67,14 +67,14 @@ foreach (Isik p in people)
     to_file.WriteLine(p.nimi+","+ p.calculateAge()+ "," + p.sugu + ";");
 }
 to_file.Close();
+var from_file_ = File.ReadAllLines(@"..\..\..\People.txt");
 StreamReader from_file = new StreamReader(@"..\..\..\People.txt");
 int line_count = from_file.ReadToEnd().Split(new char[] { ';' }).Length-1;
 Console.WriteLine(line_count);
-
 for (int i = 0; i < people.Count; i++)
-{
-    int row_count = from_file.ReadLine().Split(new char[] { ',' }).Length;
-    Console.WriteLine(row_count);
+{ 
+    string[] row_count = from_file_[i].Split(',');
+    Console.WriteLine("1 - " + row_count[0] + " 2 - " + row_count[1] + " 3 - " + row_count[2].Split(';')[0]);
 }
 
 from_file.Close();
