@@ -15,15 +15,15 @@ using System.Xml.Linq;
 
 //Harjutus
 
-List<Isik> people = new List<Isik>();
+List<Tootaja> people = new List<Tootaja>();
 //Tootaja
 //1
-Tootaja tootaja = new Tootaja(Isik.Sugu.Mees, "Marco", 2003, "Telia", Tootaja.Amet.Kontoritöötaja, 1000);
+Tootaja tootaja = new Tootaja(Isik.Sugu.Mees, "Marco", 2003, "Telia", Tootaja.Amet.Kontoritöötaja, 1000.23);
 tootaja.calculateIncome(20, 500);
 tootaja.calculateAge();
 
 //2
-Tootaja tootaja2 = new Tootaja(Isik.Sugu.Mees, "Dencik", 2000, "Euronics", Tootaja.Amet.Tuletõrjuja, 1700,Tootaja.Praktika.Jah);
+Tootaja tootaja2 = new Tootaja(Isik.Sugu.Mees, "Dencik", 2000, "Euronics", Tootaja.Amet.Tuletõrjuja, 1700.67,Tootaja.Praktika.Jah);
 tootaja2.calculateIncome(20, 500);
 tootaja2.calculateAge();
 
@@ -55,26 +55,31 @@ kutsekooliopilane4.calculate_study_years(2021, 2023);
 
 people.Add(tootaja);
 people.Add(tootaja2);
-people.Add(opilane);
-people.Add(kutsekooliopilane);
-people.Add(kutsekooliopilane2);
-people.Add(kutsekooliopilane3);
-people.Add(kutsekooliopilane4);
+
 StreamWriter to_file = new StreamWriter(@"..\..\..\People.txt", false);
-foreach (Isik p in people)
+foreach (Tootaja p in people)
 {
     p.printInfo();
-    to_file.WriteLine(p.nimi+","+ p.calculateAge()+ "," + p.sugu + ";");
+    to_file.WriteLine(p.nimi+"-"+ p.calculateAge()+"-"+ p.synniAasta+"-"+ p.sugu +"-"+ p.asutus +"-"+p.amet+"-"+p.tootasu+ ";");
 }
 to_file.Close();
 var from_file_ = File.ReadAllLines(@"..\..\..\People.txt");
 StreamReader from_file = new StreamReader(@"..\..\..\People.txt");
-int line_count = from_file.ReadToEnd().Split(new char[] { ';' }).Length-1;
-Console.WriteLine(line_count);
+List<Tootaja> toootajas = new List<Tootaja>();
 for (int i = 0; i < people.Count; i++)
 { 
-    string[] row_count = from_file_[i].Split(',');
+    var row_count = from_file_[i].Split('-');
     Console.WriteLine("1 - " + row_count[0] + " 2 - " + row_count[1] + " 3 - " + row_count[2].Split(';')[0]);
 }
 
+for (int i = 0; i < people.Count; i++)
+{
+    string[] row_count = from_file_[i].Split('-');
+    toootajas.Add(new Tootaja((Isik.Sugu)Enum.Parse(typeof(Isik.Sugu), row_count[3], true), row_count[0], int.Parse(row_count[2]), row_count[4], (Tootaja.Amet)Enum.Parse(typeof(Tootaja.Amet), row_count[5], true), float.Parse(row_count[6])));
+}
+foreach (Tootaja p in toootajas)
+{
+    p.printInfo();
+
+}
 from_file.Close();

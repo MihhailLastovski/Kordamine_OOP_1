@@ -1,7 +1,2 @@
-Marco,19,Mees;
-Dencik,22,Mees;
-Tatjana,12,Naine;
-Petr,23,Mees;
-Lera,22,Naine;
-Maksim,26,Mees;
-Vlad,22,Mees;
+Marco-19-2003-Mees-Telia-Kontoritöötaja-1000,23;
+Dencik-22-2000-Mees-Euronics-Tuletõrjuja-1700,67;

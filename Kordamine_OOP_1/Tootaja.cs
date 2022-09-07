@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Kordamine_OOP_1
 {
     
-    class Tootaja : Isik
+    public class Tootaja : Isik
     {
         public string asutus;
         public enum Amet { Ehitaja, Tuletõrjuja, Kontoritöötaja }
@@ -22,6 +22,12 @@ namespace Kordamine_OOP_1
             this.asutus = asutus;
             this.amet = amet;
             this.tootasu = tootasu;
+
+        }
+        public Tootaja(Sugu sugu, string nimi, int synniAasta, string asutus, Amet amet) : base(nimi, synniAasta, sugu)
+        {
+            this.asutus = asutus;
+            this.amet = amet;
 
         }
         public Tootaja(Sugu sugu, string nimi, int synniAasta, string asutus, Amet amet, double tootasu, Praktika praktika) : base(nimi, synniAasta, sugu)
