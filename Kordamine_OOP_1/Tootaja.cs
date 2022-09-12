@@ -56,7 +56,7 @@ namespace Kordamine_OOP_1
             Console.WriteLine("Tootaja");
             if (praktika == Praktika.Ei)
             {
-                Console.WriteLine($"Nimi: {nimi} \nSugu: {sugu} \nSynniaasta: {synniAasta} \nVanus: {calculateAge()} \nAsutus: {asutus} \nAmet: {amet} \nTootasu: {netopalk}$ \n");
+                Console.WriteLine($"Nimi: {nimi} \nSugu: {sugu} \nSynniaasta: {synniAasta} \nVanus: {calculateAge()} \nAsutus: {asutus} \nAmet: {amet} \nTootasu: {calculateIncome(20,500)}$ \n");
             }
             else
             {

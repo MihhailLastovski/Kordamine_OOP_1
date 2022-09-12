@@ -1,6 +1,8 @@
 ﻿using Kordamine_OOP_1;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 
 //Koduloom kassKloon = new Rott(kass);
@@ -15,15 +17,18 @@ using System.Xml.Linq;
 
 //Harjutus
 
-List<Tootaja> people = new List<Tootaja>();
+
+List<Tootaja> people_t = new List<Tootaja>();
+List<Kutsekooliopilane> people_k = new List<Kutsekooliopilane>();
+List<Opilane> people_o = new List<Opilane>();
 //Tootaja
 //1
-Tootaja tootaja = new Tootaja(Isik.Sugu.Mees, "Marco", 2003, "Telia", Tootaja.Amet.Kontoritöötaja, 1000.23);
+Tootaja tootaja = new Tootaja(Isik.Sugu.Mees, "Marco", 2003, "Telia", Tootaja.Amet.Kontoritöötaja, 1000);
 tootaja.calculateIncome(20, 500);
 tootaja.calculateAge();
 
 //2
-Tootaja tootaja2 = new Tootaja(Isik.Sugu.Mees, "Dencik", 2000, "Euronics", Tootaja.Amet.Tuletõrjuja, 1700.67,Tootaja.Praktika.Jah);
+Tootaja tootaja2 = new Tootaja(Isik.Sugu.Mees, "Dencik", 2000, "Euronics", Tootaja.Amet.Tuletõrjuja, 1700,Tootaja.Praktika.Jah);
 tootaja2.calculateIncome(20, 500);
 tootaja2.calculateAge();
 
@@ -53,31 +58,79 @@ Kutsekooliopilane kutsekooliopilane4 = new Kutsekooliopilane("Vlad", 2000, Isik.
 kutsekooliopilane4.calculateAge();
 kutsekooliopilane4.calculate_study_years(2021, 2023);
 
-people.Add(tootaja);
-people.Add(tootaja2);
+people_t.Add(tootaja);
+people_t.Add(tootaja2);
+people_k.Add(kutsekooliopilane);
+people_k.Add(kutsekooliopilane2);
+people_o.Add(opilane);
 
 StreamWriter to_file = new StreamWriter(@"..\..\..\People.txt", false);
-foreach (Tootaja p in people)
+foreach (Tootaja p in people_t)
 {
-    p.printInfo();
-    to_file.WriteLine(p.nimi+"-"+ p.calculateAge()+"-"+ p.synniAasta+"-"+ p.sugu +"-"+ p.asutus +"-"+p.amet+"-"+p.tootasu+ ";");
+    to_file.WriteLine("Tootaja" + "-" + p.nimi+"-"+ p.calculateAge()+"-"+ p.synniAasta+"-"+ p.sugu +"-"+ p.asutus +"-"+p.amet+"-"+p.tootasu +"-" + p.praktika);
+}
+foreach (Opilane p in people_o)
+{
+    to_file.WriteLine("Opilane" + "-" + p.nimi + "-" + p.calculateAge() + "-" + p.synniAasta + "-" + p.sugu + "-" + p.koolinimi + "-" + p.klass + "-" + p.spetsialiseerumine + "-" + p.koduloom_on + "-" + p.huviringid);
+}
+foreach (Kutsekooliopilane p in people_k)
+{
+    to_file.WriteLine("Kutsekooliopilane" + "-" + p.nimi + "-" + p.calculateAge() + "-" + p.synniAasta + "-" + p.sugu + "-" + p.oppeasutus + "-" + p.eriala + "-" + p.kursus+ "-" + p.toetus + "-" + p.lopp_kuupaev + "-" + p.sissepaas_kuupaev);
 }
 to_file.Close();
+
 var from_file_ = File.ReadAllLines(@"..\..\..\People.txt");
 StreamReader from_file = new StreamReader(@"..\..\..\People.txt");
-List<Tootaja> toootajas = new List<Tootaja>();
-for (int i = 0; i < people.Count; i++)
-{ 
-    var row_count = from_file_[i].Split('-');
-    Console.WriteLine("1 - " + row_count[0] + " 2 - " + row_count[1] + " 3 - " + row_count[2].Split(';')[0]);
-}
 
-for (int i = 0; i < people.Count; i++)
+List<Tootaja> toootajas = new List<Tootaja>();
+List<Opilane> opilased = new List<Opilane>();
+List<Kutsekooliopilane> kutsekooliopilanes = new List<Kutsekooliopilane>();
+
+
+
+for (int i = 0; i < from_file_.Length; i++)
 {
     string[] row_count = from_file_[i].Split('-');
-    toootajas.Add(new Tootaja((Isik.Sugu)Enum.Parse(typeof(Isik.Sugu), row_count[3], true), row_count[0], int.Parse(row_count[2]), row_count[4], (Tootaja.Amet)Enum.Parse(typeof(Tootaja.Amet), row_count[5], true), float.Parse(row_count[6])));
+
+    switch (row_count[0])
+    {
+        case "Tootaja":
+            toootajas.Add(new Tootaja((Isik.Sugu)Enum.Parse(typeof(Isik.Sugu), row_count[4], true), row_count[1], int.Parse(row_count[3]), row_count[5], (Tootaja.Amet)Enum.Parse(typeof(Tootaja.Amet), row_count[6], true), double.Parse(row_count[7])));
+            break;
+        case "Opilane":
+            opilased.Add(new Opilane(row_count[1], int.Parse(row_count[3]), (Isik.Sugu)Enum.Parse(typeof(Isik.Sugu), row_count[4], true), row_count[5], row_count[6], (Opilane.Spetsialiseerumine)Enum.Parse(typeof(Opilane.Spetsialiseerumine), row_count[7], true), (Opilane.Koduloom_on)Enum.Parse(typeof(Opilane.Koduloom_on), row_count[8], true), (Opilane.Huviringid)Enum.Parse(typeof(Opilane.Huviringid), row_count[9], true)));
+            break;
+        case "Kutsekooliopilane":
+            kutsekooliopilanes.Add(new Kutsekooliopilane(
+                row_count[1],
+                int.Parse(row_count[3]),
+                (Isik.Sugu)Enum.Parse(typeof(Isik.Sugu), row_count[4], true),
+                (Kutsekooliopilane.Oppeasutus)Enum.Parse(typeof(Kutsekooliopilane.Oppeasutus),
+                row_count[5], true),
+                row_count[6],
+                int.Parse(row_count[7]),
+                double.Parse(row_count[8]),
+                int.Parse(row_count[9]),
+                int.Parse(row_count[10])
+                ));
+            break;
+        default:
+            // code block
+            break;
+    }
+
 }
 foreach (Tootaja p in toootajas)
+{
+    p.printInfo();
+
+}
+foreach (Opilane p in opilased)
+{
+    p.printInfo();
+
+}
+foreach (Kutsekooliopilane p in kutsekooliopilanes)
 {
     p.printInfo();
 

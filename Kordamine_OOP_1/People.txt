@@ -1,2 +1,5 @@
-Marco-19-2003-Mees-Telia-Kontoritöötaja-1000,23;
-Dencik-22-2000-Mees-Euronics-Tuletõrjuja-1700,67;
+Tootaja-Marco-19-2003-Mees-Telia-Kontoritöötaja-1000-Ei
+Tootaja-Dencik-22-2000-Mees-Euronics-Tuletõrjuja-1700-Jah
+Opilane-Tatjana-12-2010-Naine-Tallinna Realkool-5b-Tehnikamees-Ei-Robootika
+Kutsekooliopilane-Petr-23-1999-Mees-Tartu_Ülikool-Arst-3-60-0-0
+Kutsekooliopilane-Lera-22-2000-Naine-Tallinna_Ülikool-Kokk-2-50-2023-2021
